@@ -10,6 +10,24 @@ import { toast } from "sonner";
 type FormValues = {
   [key: string]: string | boolean;
 };
+
+type DataForms = {
+  title: string;
+  inputs: FormInput;
+}[];
+
+type FormInput = {
+  type: "select" | "radio" | "text" | "area" | "select" | "check";
+  name: string;
+  label: string;
+  data?: string[] | {}[];
+  dataValue?: string;
+  dataLabel?: string;
+  disabled?: boolean;
+  onChange?(e: string): void;
+}[];
+
+
 export default function Home() {
   const id = useId();
 
@@ -22,7 +40,7 @@ export default function Home() {
     pet: false,
     des: "",
   });
-  const [dataForms, setDataForms] = useState([
+  const [dataForms, setDataForms] = useState<DataForms>([
     {
       title: "Formulario",
       inputs: [
@@ -54,17 +72,17 @@ export default function Home() {
           ],
           dataLabel: "job",
           dataValue: "noc",
-        },
-        {
-          type: "check",
-          name: "pet",
-          label: "Tiene pet*",
-        },
-        {
-          type: "area",
-          name: "des",
-          label: "Descripcion*",
-        },
+        }
+        // {
+        //   type: "check",
+        //   name: "pet",
+        //   label: "Tiene pet*",
+        // },
+        // {
+        //   type: "area",
+        //   name: "des",
+        //   label: "Descripcion*",
+        // },
       ],
     },
   ]);
