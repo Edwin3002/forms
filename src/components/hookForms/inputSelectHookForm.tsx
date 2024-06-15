@@ -25,7 +25,7 @@ export const InputSelectHookForm = ({ ...props }): JSX.Element => {
         defaultValue={getValues()[props.name]}
       >
         <SelectTrigger className="w-[280px]">
-          <SelectValue placeholder={`Seleciona una opción`} />
+          <SelectValue placeholder={`Seleciona la edad`} />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>

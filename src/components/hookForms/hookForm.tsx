@@ -24,10 +24,29 @@ type Props = {
   dataForms: DataForms;
   onHandleSubmit(data: FormValues): void;
   buttonText?: string;
+  children?: JSX.Element  
 };
+
+type DataForms = {
+  title: string;
+  inputs: FormInput;
+}[];
+
+type FormInput = {
+  type: "select" | "radio" | "text" | "area" | "select" | "check";
+  name: string;
+  label: string;
+  data?: string[] | {}[];
+  dataValue?: string;
+  dataLabel?: string;
+  disabled?: boolean;
+  onChange?(e: string): void;
+}[];
+
 
 export const HookForm = ({
   dataForms = [],
+  children = <></>,
   onHandleSubmit = (e) => {
     console.error(e);
   },
@@ -35,7 +54,7 @@ export const HookForm = ({
   ...props
 }: Props) => {
   const { handleSubmit } = useFormContext();
-  const onSubmit: SubmitHandler<FormValues> = onHandleSubmit;
+  const onSubmit = onHandleSubmit;
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {dataForms.map(({ title, inputs }, i) => (
@@ -99,23 +118,10 @@ export const HookForm = ({
         </Fragment>
       ))}
       <ButtonHookForm type="submit">{buttonText}</ButtonHookForm>
+      {children}
     </form>
   );
 };
 
-type DataForms = {
-  title: string;
-  inputs: FormInput;
-}[];
 
-type FormInput = {
-  type: "select" | "radio" | "text" | "area" | "select" | "check";
-  name: string;
-  label: string;
-  data?: string[] | {}[];
-  dataValue?: string;
-  dataLabel?: string;
-  disabled?: boolean;
-  onChange?(e: string): void;
-  // onChange?: (e: string)=>{};
-}[];
+
