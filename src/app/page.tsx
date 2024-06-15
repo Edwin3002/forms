@@ -27,7 +27,6 @@ type FormInput = {
   onChange?(e: string): void;
 }[];
 
-
 export default function Home() {
   const id = useId();
 
@@ -125,72 +124,78 @@ export default function Home() {
       </div>
       <FormProvider {...methods}>
         <HookForm
-          onHandleSubmit={(e) => {console.log(e); alert(JSON.stringify(methods.getValues()))}}
+          onHandleSubmit={(e) => {
+            console.log(e);
+            alert(JSON.stringify(methods.getValues()));
+          }}
           dataForms={dataForms}
         >
-         <div className="">
-        <ButtonHookForm
-          onClick={() => {
-            methods.setValue("car", false);
-            dataForms[0].inputs.push({
-              type: "check",
-              name: "car",
-              label: "Tiene coche",
-            });
+          <div>
+            <ButtonHookForm
+              type="button"
+              onClick={() => {
+                methods.setValue("car", false);
+                dataForms[0].inputs.push({
+                  type: "check",
+                  name: "car",
+                  label: "Tiene coche",
+                });
 
-            setDataForms([...dataForms]);
-          }}
-        >
-          check
-        </ButtonHookForm>
-       
-        <ButtonHookForm
-          onClick={() => {
-            methods.setValue("comida", "");
-            dataForms[0].inputs.push({
-              type: "select",
-              name: "comida",
-              data: ["1","2","3"],
-              label: "Numero de comidas al dia",
-            });
+                setDataForms([...dataForms]);
+              }}
+            >
+              check
+            </ButtonHookForm>
 
-            setDataForms([...dataForms]);
-          }}
-        >
-          select
-        </ButtonHookForm>
-        <ButtonHookForm
-          onClick={() => {
-            methods.setValue("estudios", "");
-            dataForms[0].inputs.push({
-              type: "text",
-              name: "estudios",
-              label: "Estudio superior",
-            });
+            <ButtonHookForm
+              type="button"
+              onClick={() => {
+                methods.setValue("comida", "");
+                dataForms[0].inputs.push({
+                  type: "select",
+                  name: "comida",
+                  data: ["1", "2", "3"],
+                  label: "Numero de comidas al dia",
+                });
 
-            setDataForms([...dataForms]);
-          }}
-        >
-          text
-        </ButtonHookForm>
-        <ButtonHookForm
-          onClick={() => {
-            methods.setValue("device", "");
-            dataForms[0].inputs.push({
-              type: "radio",
-              name: "device",
-              data: ["xbox","play","pc"],
-              label: "Plataforma favorita",
-            });
+                setDataForms([...dataForms]);
+              }}
+            >
+              select
+            </ButtonHookForm>
+            <ButtonHookForm
+              type="button"
+              onClick={() => {
+                methods.setValue("estudios", "");
+                dataForms[0].inputs.push({
+                  type: "text",
+                  name: "estudios",
+                  label: "Estudio superior",
+                });
 
-            setDataForms([...dataForms]);
-          }}
-        >
-          radio
-        </ButtonHookForm>
-        </div>
+                setDataForms([...dataForms]);
+              }}
+            >
+              text
+            </ButtonHookForm>
+            <ButtonHookForm
+              type="button"
+              onClick={() => {
+                methods.setValue("device", "");
+                dataForms[0].inputs.push({
+                  type: "radio",
+                  name: "device",
+                  data: ["xbox", "play", "pc"],
+                  label: "Plataforma favorita",
+                });
+
+                setDataForms([...dataForms]);
+              }}
+            >
+              radio
+            </ButtonHookForm>
+          </div>
         </HookForm>
-        
       </FormProvider>
     </main>
   );
