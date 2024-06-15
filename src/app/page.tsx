@@ -35,7 +35,6 @@ export default function Home() {
     name: "",
     genero: "",
     age: "",
-    age2: "",
     job: "",
     pet: false,
     des: "",
@@ -72,17 +71,17 @@ export default function Home() {
           ],
           dataLabel: "job",
           dataValue: "noc",
-        }
-        // {
-        //   type: "check",
-        //   name: "pet",
-        //   label: "Tiene pet*",
-        // },
-        // {
-        //   type: "area",
-        //   name: "des",
-        //   label: "Descripcion*",
-        // },
+        },
+        {
+          type: "check",
+          name: "pet",
+          label: "Tiene pet*",
+        },
+        {
+          type: "area",
+          name: "des",
+          label: "Descripcion*",
+        },
       ],
     },
   ]);
@@ -129,7 +128,7 @@ export default function Home() {
           onHandleSubmit={(e) => {console.log(e); alert(JSON.stringify(methods.getValues()))}}
           dataForms={dataForms}
         />
-         <div className="flex justify-between bg-red-500 w-1/2">
+         <div className="flex justify-between  w-1/3 my-2">
         <ButtonHookForm
           onClick={() => {
             methods.setValue("car", false);
