@@ -6,6 +6,7 @@ export async function GET() {
     },
   );
   const data = await result.json();
+ console.log("siuuuuuuuuu");
  
   return Response.json({ datetime: data.datetime });
 }
